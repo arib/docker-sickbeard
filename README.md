@@ -23,6 +23,27 @@ Automatically finds new and old episodes for you and it works with your current 
 ## Usage
 
 ```
+# As user docker do
+$ mkdir containers && cd containers
+$ git clone git@github.com:arib/docker-sickbeard.git
+$ cd docker-sickbeard
+$ mkdir config
+$ id docker
+# insert user and group id into create command below
+```
+
+```
+docker create --name=sickbeard \
+-v /home/docker/containers/docker-sickbeard/config:/config \
+-e PGID=<gid> -e PUID=<uid> \
+-e TZ=Atlantic/Reykjavik \
+-p 8881:8081 \
+--restart=always \
+linuxserver/sickbeard
+
+```
+
+```
 docker create --name=sickbeard \
 -v <path to data>:/config \
 -v <path to downloads>:/downloads \
